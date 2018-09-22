@@ -1,0 +1,9 @@
+[Core]
+Name = reddit
+Module = reddit
+
+[Python]
+Version = 2+
+
+[Documentation]
+Description = Message with the name of a subreddit and bot returns a link from the hot page
