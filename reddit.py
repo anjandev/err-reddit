@@ -35,10 +35,16 @@ class Reddit(BotPlugin):
                 arg = "+"
             url += arg
 
-        url += "/top.json"
+        url += "/hot.json"
 
         response = requests.get(url, headers = {'User-agent': 'Chrome'})
         parsed = json.loads(response.text)
+
+        try:
+            if len(parsed['data']['children']) == 0:
+                return "The subreddit {args} does not exist".format(args=args)
+        except KeyError:
+            return "The subreddit {args} does not exist".format(args=args)
 
         randomItem = random.choice(parsed['data']['children'])
         url = randomItem['data']['url']
