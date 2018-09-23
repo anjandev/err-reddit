@@ -25,6 +25,10 @@ class Reddit(BotPlugin):
     @botcmd
     def subme(self, msg, args):
         """Usage: !subme <subreddit>"""
+
+        if " " in args or len(args) == 0:
+            return "Usage: !subme <subreddit>"
+
         url = "https://www.reddit.com/r/"
         for arg in args:
             if arg is " ":
