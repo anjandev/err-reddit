@@ -1,4 +1,4 @@
-#    <one line to give the program's name and a brief idea of what it does.>
+#    <err-reddit: Message with the name of a subreddit and bot returns a link from the hot page>
 #    Copyright (C) <2018>  <Anjandev Momi> anjan@momi.ca
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -36,9 +36,9 @@ class Reddit(BotPlugin):
         response = requests.get(url, headers = {'User-agent': 'Chrome'})
         parsed = json.loads(response.text)
 
-        i = random.randint(0, 25)
-        url = parsed['data']['children'][i]['data']['url']
-        title = parsed['data']['children'][i]['data']['title']
+        randomItem = random.choice(parsed['data']['children'])
+        url = randomItem['data']['url']
+        title = randomItem['data']['title']
 
 
         return "Title: \"{title}\" {url}".format(title=title, url=url)
